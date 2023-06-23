@@ -35,7 +35,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetpackexample.ui.theme.JetpackExampleTheme
 import com.example.navigationdrawercomposeexample.R
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,12 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = colorResource(R.color.bg_color)
                 ) {
-                    ScreenMain()
+
+                    SetStatusBarColor {
+                        // Your app content goes here
+                        ScreenMain()
+                    }
+
                 }
             }
         }
@@ -93,5 +101,17 @@ public fun SnackbarExample() {
     }
 }
 
+
+@Composable
+fun SetStatusBarColor(content: @Composable () -> Unit) {
+    val systemUiController = rememberSystemUiController()
+
+    // Change the status bar color to the desired color
+    systemUiController.setStatusBarColor(
+        color = Color.Black // Replace with your desired color
+    )
+
+    content()
+}
 
 

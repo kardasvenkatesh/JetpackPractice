@@ -1,13 +1,11 @@
 package com.example.jetpackprofilepractice
 
-import android.media.Image
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 
 @Composable
 fun ScreenMain() {
@@ -32,6 +30,11 @@ fun ScreenMain() {
 
         composable(Routes.MyHomePage.route) {
             MyHomePage(navController = navController)
+        }
+
+        composable(Routes.CartPage.route) {
+            CartPage(navController = navController, navigateBack = { navController.popBackStack() })
+
         }
 
 
@@ -60,23 +63,41 @@ fun ScreenMain() {
 //            ProductDetail(navController = navController, it.arguments?.getString("title"))
 //        }
 
-        composable(Routes.ProductDetails.route + "/{title}?{price}?{category}?{image}?{description}") { navBackStack ->
+        composable(Routes.ProductDetails.route + "/{title}?{price}?{category}?{description}?{id}?{image}") { navBackStack ->
 
             val title = navBackStack.arguments?.getString("title")
             val price = navBackStack.arguments?.getString("price")
             val category = navBackStack.arguments?.getString("category")
-            val image = navBackStack.arguments?.getString("image")
             val description = navBackStack.arguments?.getString("description")
+            val id = navBackStack.arguments?.getString("id")
+            val image = navBackStack.arguments?.getString("image")
 
 
 
-            Log.d("imggg", "," + title + ",  " + price + "," + category +","+image)
+            Log.d(
+                "imggg",
+                "," + title + ",  " + price + "," + category + "," + image + ",,,,,,,,," + description + "," + id
+            )
 
             if (category != null) {
                 if (price != null) {
                     if (image != null) {
                         if (description != null) {
-                            ProductDetail(title = title, price = price, category = category, image = image, description = description)
+                            Log.d("imgesneww", image)
+
+                            ProductDetail(
+                                id = id!!.toInt(),
+                                description = description,
+                                title = title,
+                                price = price,
+                                category = category,
+                                navController = navController,
+                                image = image
+
+                            )
+
+                            Log.d("magessss", image.toString())
+
                         }
                     }
                 }

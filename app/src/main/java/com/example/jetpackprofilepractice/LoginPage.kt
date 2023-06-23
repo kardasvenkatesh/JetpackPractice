@@ -145,8 +145,7 @@ fun LoginPage(navController: NavHostController) {
                         imageVector = Icons.Default.Email, contentDescription = "Email Icon"
                     )
                 },
-
-
+                
                 modifier = Modifier
                     .background(
                         color = Color(R.color.dark_grey_light), RoundedCornerShape(percent = 50)

@@ -2,6 +2,10 @@ package com.example.jetpackprofilepractice
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,6 +33,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -71,6 +76,7 @@ import com.example.jetpackprofilepractice.Data.CategoriesItem
 import com.example.jetpackprofilepractice.Data.ProductsItem
 import com.example.jetpackprofilepractice.model.CategoryViewModel
 import com.example.jetpackprofilepractice.model.ProductsViewModel
+import com.example.jetpackprofilepractice.network.ApiService.Companion.apiService
 import com.example.navigationdrawercomposeexample.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -78,6 +84,7 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -93,9 +100,6 @@ fun MyHomePage(navController: NavController) {
     productViewModel!!.getAllProducts()
 
     var count = "5"
-
-
-
 
     JetpackExampleTheme() {
 
@@ -116,11 +120,10 @@ fun MyHomePage(navController: NavController) {
                 ) {
 
 
+
                     val state = rememberPagerState()
                     Column(modifier = Modifier.background(color = colorResource(id = R.color.dark_grey))) {
 
-
-                        Log.d("cmgggg", "cmggg")
 
                         if (mainViewModel != null) {
                             SliderView(state, mainViewModel)
@@ -141,6 +144,11 @@ fun MyHomePage(navController: NavController) {
                             }
 
                         }
+
+//                        LaunchedEffect(Unit) {
+//                            val response = apiService!!.getAllProducts() // Make your API call here
+//                            productViewModel.productListResponse = response.take(5) // Take only the first 5 elements from the API response
+//                        }
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
@@ -288,9 +296,6 @@ fun CategoriesCard(categoriesItem: CategoriesItem) {
 
 @Composable
 fun ProductsCard(productsItem: ProductsItem, navController: NavController, count: String) {
-    var image by remember {
-        mutableStateOf(0)
-    }
 
     Card(
 
@@ -305,21 +310,21 @@ fun ProductsCard(productsItem: ProductsItem, navController: NavController, count
 //                navController.navigate(Routes.ProductDetails.route + ?"title" = ${productsItem.title}")
 //                navController.navigate("ProductDetail" + "3")
 //                navController.navigate("ProductDetail")
-                Log.d("imagettextddd", "," + "${productsItem.images.get(0)}")
+                Log.d("imagesenfding", "," + "${productsItem.images.get(0)}")
 
                 val image = productsItem.images.get(0)
 
 
 //                navController.navigate(Routes.ProductDetails.route + "/name=${productsItem.title}?category=${productsItem.category}")
                 navController.navigate(
-                    Routes.ProductDetails.route + "/${productsItem.title}?${productsItem.price.toString()}?${productsItem.category.name}?${
-                        image
-                    }?${productsItem.description}"
+                    Routes.ProductDetails.route + "/${productsItem.title}?${productsItem.price.toString()}?${productsItem.category.name}?${productsItem.description}?${productsItem.id}?${
+                        productsItem.images.get(0)
+                    }"
                 )
                 Log.d("pricesss",
                     productsItem.price.toString() + "," + { productsItem.category.name } + ", " + productsItem.images.get(
                         0
-                    ))
+                    ) + ", " + productsItem.category.image)
 
 
             }) {
@@ -492,7 +497,8 @@ fun SwipeRefreshCompose() {
                 fontSize = 22.sp,
                 letterSpacing = 2.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(20.dp)
             )
 
@@ -560,3 +566,18 @@ fun ListDivider() {
         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
     )
 }
+
+@Composable
+private fun CircularProgressAnimated() {
+    val progressValue = 0.75f
+    val infiniteTransition = rememberInfiniteTransition()
+
+    val progressAnimationValue by infiniteTransition.animateFloat(
+        initialValue = 0.0f,
+        targetValue = progressValue,
+        animationSpec = infiniteRepeatable(animation = tween(900))
+    )
+
+    CircularProgressIndicator(progress = progressAnimationValue)
+}
+
