@@ -1,6 +1,7 @@
 package com.example.jetpackprofilepractice
 
 import android.provider.CalendarContract.Colors
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
@@ -134,8 +135,7 @@ fun LoginPage(navController: NavHostController) {
             Spacer(modifier = Modifier.height(50.dp))
 
 
-            TextField(
-                value = username.value,
+            TextField(value = username.value,
                 onValueChange = {
                     username.value = it
                     showError = false
@@ -145,7 +145,7 @@ fun LoginPage(navController: NavHostController) {
                         imageVector = Icons.Default.Email, contentDescription = "Email Icon"
                     )
                 },
-                
+
                 modifier = Modifier
                     .background(
                         color = Color(R.color.dark_grey_light), RoundedCornerShape(percent = 50)
@@ -189,19 +189,18 @@ fun LoginPage(navController: NavHostController) {
 
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 trailingIcon = {
-                    val image = if (passwordVisible)
-                        Icons.Filled.Visibility
+                    val image = if (passwordVisible) Icons.Filled.Visibility
                     else Icons.Filled.VisibilityOff
 
                     // Please provide localized description for accessibility services
                     val description = if (passwordVisible) "Hide password" else "Show password"
 
-                    IconButton(onClick = {passwordVisible = !passwordVisible}){
-                        Icon(imageVector  = image, description)
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(imageVector = image, description)
                     }
                 }
 
-                )
+            )
 
 
             Spacer(modifier = Modifier.height(40.dp))
@@ -213,11 +212,10 @@ fun LoginPage(navController: NavHostController) {
 
 
                         if (username.value.isEmpty() and password.value.isNotEmpty()) {
-                            Toast.makeText(mContext, "Username is Empty", Toast.LENGTH_SHORT).show()
+                            move()
                         }
 
                         if (username.value.isNotEmpty() and password.value.isEmpty()) {
-
 
                             Toast.makeText(mContext, "Password is Empty", Toast.LENGTH_SHORT).show()
                         }
@@ -291,5 +289,9 @@ fun MyLogScreenPreview() {
 }
 
 
+fun move() {
 
+   Log.d("Username","empty username")
+
+}
 

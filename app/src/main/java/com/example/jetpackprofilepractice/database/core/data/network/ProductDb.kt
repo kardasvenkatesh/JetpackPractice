@@ -15,7 +15,7 @@ val migration1to2 = object : Migration(1, 2) {
 
 @Database(
     entities = [Product::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class ProductDb : RoomDatabase() {

@@ -7,4 +7,8 @@ sealed class Routes(val route: String) {
     object MyHomePage : Routes("HomeActivity")
     object ProductDetails : Routes("ProductDetail")
     object CartPage : Routes("CartPage")
+    object CheckoutPage : Routes("CheckoutPage")
+
+    object SuccessPage : Routes("SuccessPage")
+    object OtpPage : Routes("OtpPage")
 }

@@ -46,7 +46,6 @@ class HomeActivity(navController: NavController) : ComponentActivity() {
                             id = R.color.dark_grey
                         )
                     )
-
                 )
                 Box(modifier = Modifier.fillMaxSize()) {
 

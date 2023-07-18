@@ -1,6 +1,7 @@
 package com.example.jetpackprofilepractice.database.content
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -30,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -38,7 +40,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.jetpackprofilepractice.database.core.data.network.components.ProductsViewModel
 import com.example.navigationdrawercomposeexample.R
 import ro.alexmamo.roomjetpackcompose.domain.model.Product
 import ro.alexmamo.roomjetpackcompose.domain.repository.Products
@@ -48,10 +53,15 @@ fun ProductsContent(
     padding: PaddingValues,
     products: Products,
     deleteProduct: (product: Product) -> Unit,
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
+    navController: NavHostController,
 ) {
 
-    val navController = rememberNavController()
+//    val navController = rememberNavController()
+    val mContext = LocalContext.current
+
+
+    val viewModel: ProductsViewModel = viewModel()
     Column(Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier
@@ -84,8 +94,7 @@ fun ProductsContent(
                 Modifier
                     .background(colorResource(id = R.color.green_color))
                     .fillMaxWidth()
-                    .height(50.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                    .height(50.dp), verticalAlignment = Alignment.CenterVertically
 
             ) {
 
@@ -101,7 +110,7 @@ fun ProductsContent(
                         textAlign = TextAlign.Center,
                         color = Color.White,
                         fontSize = 14.sp,
-                        text = "Qty : " + "${products.size}" + " | " + "${"$500"}",
+                        text = "Qty : " + "${products.size}" + " | " + viewModel.totalPrice,
 
                         )
                 }
@@ -110,7 +119,10 @@ fun ProductsContent(
                     Modifier
                         .weight(2f)
                         .fillMaxHeight()
-                        .background(colorResource(id = R.color.green_color)))
+                        .background(colorResource(id = R.color.green_color))
+                )
+
+                Log.d("sizeeeee", products.size.toString())
 
 
                 Image(painter = painterResource(id = R.drawable.baseline_keyboard_double_arrow_right_24),
@@ -120,7 +132,20 @@ fun ProductsContent(
                         .width(40.dp)
                         .padding(start = 0.dp, end = 10.dp)
                         .clickable {
-                            navController.navigate("CartPage")
+
+                            if (products.size > 0) {
+                                navController.navigate("CheckoutPage")
+                            } else {
+                                Toast
+                                    .makeText(
+                                        mContext,
+                                        "Please Addf Something to Cart",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                            }
+
+//
                         }
 
                 )

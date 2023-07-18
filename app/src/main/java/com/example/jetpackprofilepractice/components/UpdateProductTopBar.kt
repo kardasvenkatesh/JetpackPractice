@@ -15,18 +15,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.Color.Companion.Yellow
-import ro.alexmamo.roomjetpackcompose.core.Constants.Companion.UPDATE_BOOK_SCREEN
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UpdateProductTopBar(
+fun UpdateProductTopBar(title: String,
     navigateBack: () -> Unit
 ) {
     TopAppBar (
 
         title = {
             Text(
-                text = "My Cart", color = White
+                text = title, color = White
             )
         },
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Black),

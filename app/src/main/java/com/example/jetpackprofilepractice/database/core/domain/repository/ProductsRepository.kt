@@ -6,7 +6,7 @@ import ro.alexmamo.roomjetpackcompose.domain.model.Product
 typealias Products = List<Product>
 
 interface ProductsRepository {
-    fun getProductFromRoom(): Flow<Products>
+     fun getProductFromRoom(): Flow<Products>
 
     suspend fun getProductFromRoom(id: Int): Product
 

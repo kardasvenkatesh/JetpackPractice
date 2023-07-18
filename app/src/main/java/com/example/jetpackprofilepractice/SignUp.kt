@@ -58,10 +58,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackexample.ui.theme.JetpackExampleTheme
 import com.example.navigationdrawercomposeexample.R
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun SignUp(navController: NavHostController) {
+
 
     Box(modifier = Modifier.fillMaxSize()) {
         ClickableText(
@@ -80,6 +83,17 @@ fun SignUp(navController: NavHostController) {
     }
     var text by rememberSaveable { mutableStateOf("") }
     var isError by rememberSaveable { mutableStateOf(false) }
+
+
+
+    var mDatabase = FirebaseDatabase.getInstance()
+    var mDatabaseReference = mDatabase.getReference()
+
+    mDatabaseReference = mDatabase.getReference().child("name");
+    mDatabaseReference.setValue("Donald Duck")
+
+//    FirebaseApp.initializeApp();
+
 
 
     fun validate(text: String) {

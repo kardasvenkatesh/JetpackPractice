@@ -9,7 +9,7 @@ import ro.alexmamo.roomjetpackcompose.domain.repository.ProductsRepository
 class ProductsRepositoryImpl(
     private val productDao: ProductDao
 ) : ProductsRepository {
-    override fun getProductFromRoom() = productDao.getProducts()
+    override fun getProductFromRoom(): Flow<Products> = productDao.getProducts()
 
     override suspend fun getProductFromRoom(id: Int): Product {
         TODO("Not yet implemented")

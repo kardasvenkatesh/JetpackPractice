@@ -89,6 +89,7 @@ import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.layout.layout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -107,6 +108,8 @@ fun ProductDetail(
     navController: NavHostController,
     image: String,
 ) {
+
+    val mContext = LocalContext.current
 
     var isVisible by remember { mutableStateOf(true) }
     var count by remember { mutableStateOf(0) }
@@ -153,27 +156,12 @@ fun ProductDetail(
                         ) {
 
                             Box(
+
                                 modifier = Modifier
                                     .height(45.dp)
                                     .width(45.dp)
 
                             ) {
-                                Text(
-                                    modifier = Modifier
-                                        .padding(start = 40.dp, top = 5.dp)
-                                        .height(12.dp)
-                                        .width(12.dp)
-                                        .drawBehind {
-                                            drawCircle(
-                                                color = Color.White, radius = this.size.maxDimension
-                                            )
-                                        },
-                                    textAlign = TextAlign.Center,
-                                    color = Color.Black,
-                                    fontSize = 10.sp,
-                                    text = "${products.size}",
-
-                                    )
 
                                 Image(painter = painterResource(id = R.drawable.baseline_shopping_bag_24),
                                     contentDescription = "",
@@ -182,9 +170,25 @@ fun ProductDetail(
                                         .width(45.dp)
                                         .padding(start = 10.dp)
                                         .clickable {
-                                            navController.navigate("CartPage")
+                                            if(products.size>0){
+                                                navController.navigate("CartPage")
+                                            }else{
+                                                Toast.makeText(mContext,"Please Add Something To Cart",Toast.LENGTH_SHORT).show()
+                                            }
+
                                         }
 
+                                )
+
+
+                                Text(
+                                    text = "${products.size}",fontSize = 8.sp,
+                                    textAlign = TextAlign.Center,
+                                    color = Color.Black,
+                                    modifier = Modifier
+                                        .background(Color.White, shape = CircleShape)
+                                        .circleLayout()
+                                        .padding(0.dp)
                                 )
                             }
 
@@ -516,6 +520,23 @@ fun ProductDetail(
         }
     }
 }
+
+fun Modifier.circleLayout() =
+    layout { measurable, constraints ->
+        // Measure the composable
+        val placeable = measurable.measure(constraints)
+
+        //get the current max dimension to assign width=height
+        val currentHeight = placeable.height
+        val currentWidth = placeable.width
+        val newDiameter = maxOf(currentHeight, currentWidth)
+
+        //assign the dimension and the center position
+        layout(newDiameter, newDiameter) {
+            // Where the composable gets placed
+            placeable.placeRelative((newDiameter-currentWidth)/2, (newDiameter-currentHeight)/2)
+        }
+    }
 
 @Composable
 fun AdvertView(modifier: Modifier = Modifier) {

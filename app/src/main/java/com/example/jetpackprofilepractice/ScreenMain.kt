@@ -37,6 +37,21 @@ fun ScreenMain() {
 
         }
 
+        composable(Routes.CheckoutPage.route) {
+            CheckoutScreen(navController = navController, navigateBack = { navController.popBackStack() })
+
+        }
+
+        composable(Routes.SuccessPage.route) {
+            SuccessScreen(navController = navController, navigateBack = { navController.popBackStack() })
+
+        }
+
+        composable(Routes.OtpPage.route) {
+            OtpScreen(navController = navController, navigateBack = { navController.popBackStack() })
+
+        }
+
 
 //        composable(Routes.ProductDetail.route) {
 //            ProductDetail(navController = navController, counter!!)

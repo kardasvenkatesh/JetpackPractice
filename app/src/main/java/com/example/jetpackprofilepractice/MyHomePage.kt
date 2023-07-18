@@ -266,7 +266,6 @@ fun CategoriesCard(categoriesItem: CategoriesItem) {
             textAlign = TextAlign.Center,
             text = categoriesItem.name,
             style = TextStyle(color = White, fontSize = 12.sp)
-
         )
 //            Row(modifier = Modifier.padding(0.dp)) {
 //                Column(modifier = Modifier.weight(1f)) {
