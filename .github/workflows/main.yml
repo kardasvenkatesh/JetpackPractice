@@ -1,4 +1,4 @@
-name: Main_workflow. 
+name: Main_workflow
 
 on:
   workflow_dispatch:
@@ -11,7 +11,6 @@ env:
   APP_NAME: ${{ 'MyApp-Android/ENV_TEST'  }}  
   TESTING_GROUP: ${{  'ENV_TEST'  }} 
   UPLOAD_FILE: ${{ 'android/app/build/outputs/apk/app-release.apk'  }}  
-  
 
 jobs:
   build:
@@ -30,8 +29,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Change directory to android
+        run: cd android
+
       - name: Build android
-        run: npm run cd android && ./gradlew assembleRelease
+        run: ./gradlew assembleRelease
 
       - name: Upload to App Center
         uses: wzieba/AppCenter-Github-Action@v1
