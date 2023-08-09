@@ -3,12 +3,12 @@ name: Jetpack-Deploy
 on:
   workflow_dispatch:
   push:
-        tags:
-           - 'v[0-9]+.[0-9]+.[0-9]+([0-9]+)'
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+([0-9]+)'
     
 env:
   APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN_MYAPP_ANDROID_TEST  }}  
-  APP_NAME: ${{ 'kardas_dev/ENV_TEST'  }}  
+  APP_NAME: ${{ 'MyApp-Android/ENV_TEST'  }}  
   TESTING_GROUP: ${{  'ENV_TEST'  }} 
   UPLOAD_FILE: ${{ 'android/app/build/outputs/apk/app-release.apk'  }}  
   
@@ -26,9 +26,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-      - name: Clear npm cache
-        run: npm cache clean --force
 
       - name: Install dependencies
         run: npm install
