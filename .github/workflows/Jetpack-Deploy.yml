@@ -1,4 +1,4 @@
-name: Deploy-Android-TEST 
+name: Jetpack-Deploy
 
 on:
   workflow_dispatch:
