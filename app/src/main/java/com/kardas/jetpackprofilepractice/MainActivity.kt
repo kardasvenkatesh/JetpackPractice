@@ -23,14 +23,15 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.navigationdrawercomposeexample.R
-import com.kardas.jetpackexample.ui.theme.JetpackExampleTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.kardas.jetpackexample.ui.theme.JetpackExampleTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             JetpackExampleTheme() {
 
@@ -72,7 +73,9 @@ public fun SnackbarExample() {
             }
         }
         Box(
-            modifier = Modifier.fillMaxSize().padding(20.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp),
         ){
             Row(modifier = Modifier.align(Alignment.BottomEnd)){
                 if (visible) {
