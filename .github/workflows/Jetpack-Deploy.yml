@@ -28,7 +28,6 @@ jobs:
         
     - name: Install Dependencies
       run: npm install
-      working-directory: JetpackPractice/JetpackPractice
 
     - name: Build android
       run: npm run cd android && ./gradlew assembleRelease
