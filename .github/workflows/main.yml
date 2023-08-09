@@ -1,7 +1,6 @@
-name: Main_workflow
+name: Deploy-Android-TEST 
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+([0-9]+)'
@@ -11,6 +10,7 @@ env:
   APP_NAME: ${{ 'MyApp-Android/ENV_TEST'  }}  
   TESTING_GROUP: ${{  'ENV_TEST'  }} 
   UPLOAD_FILE: ${{ 'android/app/build/outputs/apk/app-release.apk'  }}  
+  
 
 jobs:
   build:
@@ -29,11 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Change directory to android
-        run: cd android
-
       - name: Build android
-        run: ./gradlew assembleRelease
+        run: npm run cd android && ./gradlew assembleRelease
 
       - name: Upload to App Center
         uses: wzieba/AppCenter-Github-Action@v1
