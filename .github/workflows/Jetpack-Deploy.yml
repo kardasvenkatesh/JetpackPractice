@@ -28,7 +28,6 @@ jobs:
     
       - name: Build android
         run: |
-          cd app
           ./gradlew assembleRelease
 
       - name: Upload to App Center
