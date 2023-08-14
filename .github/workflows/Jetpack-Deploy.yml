@@ -25,6 +25,9 @@
 
       - name: Clear npm cache
         run: npm cache clean --force
+
+      - name: List directory contents
+        run: ls -la JetpackPractice/JetpackPractice
           
       - name: Install dependencies
         run: npm install
