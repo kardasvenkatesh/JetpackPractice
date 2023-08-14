@@ -17,9 +17,7 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-        
-      - name: Run gradlew script
-        run: ./gradlew 
+      
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v2
