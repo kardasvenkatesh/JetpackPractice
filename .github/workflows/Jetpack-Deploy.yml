@@ -33,6 +33,6 @@ jobs:
           appName: ${{ env.APP_NAME }}
           token: ${{ env.APP_CENTER_TOKEN }}
           group: ${{ env.TESTING_GROUP }}
-          file: ${{ env.UPLOAD_FILE }}
+          UPLOAD_FILE: $android/app/build/outputs/apk/app-release.apk
           notifyTesters: true
           debug: false
