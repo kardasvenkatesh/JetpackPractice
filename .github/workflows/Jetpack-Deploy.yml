@@ -19,7 +19,7 @@ jobs:
           java-version: 1.8
 
       - name: Build and package APK
-        run: ./gradlew assembleDebug # Adjust the build command as needed
+        run: gradlew assembleDebug # Adjust the build command as needed
 
       - name: Install Node.js
         uses: actions/setup-node@v2
