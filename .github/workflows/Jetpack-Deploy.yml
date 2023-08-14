@@ -1,6 +1,7 @@
 name: Jetpack-Deploy
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master # Change this to your branch name
