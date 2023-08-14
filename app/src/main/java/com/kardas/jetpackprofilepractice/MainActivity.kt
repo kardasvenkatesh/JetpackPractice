@@ -25,12 +25,21 @@ import androidx.compose.ui.unit.dp
 import com.example.navigationdrawercomposeexample.R
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kardas.jetpackexample.ui.theme.JetpackExampleTheme
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AppCenter.start(
+            application, "25d803e0-0a60-4753-b71f-7356663d4f53",
+            Analytics::class.java, Crashes::class.java
+        )
 
         setContent {
             JetpackExampleTheme() {
