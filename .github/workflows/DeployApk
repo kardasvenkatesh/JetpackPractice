@@ -7,9 +7,9 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+([0-9]+)'
     
 env:
-  APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN_MYAPP_ANDROID_TEST  }}  
-  APP_NAME: ${{ 'kardas_dev/ENV_TEST'  }}  
-  TESTING_GROUP: ${{  'ENV_TEST'  }} 
+  APP_CENTER_TOKEN: ${{ secrets.MY_JETPACK_PRACTICE_APP  }}  
+  APP_NAME: ${{ 'kardas_apps/MyJetpackPracticeApp'  }}  
+  TESTING_GROUP: ${{  'TESTING_GROUP'  }} 
   UPLOAD_FILE: ${{ 'android/app/build/outputs/apk/app-release.apk'  }}  
   
 
