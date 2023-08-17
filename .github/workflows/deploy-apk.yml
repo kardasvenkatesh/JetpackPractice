@@ -1,14 +1,14 @@
-
-name: Deploy-Android-TEST 
+name: deploy-apk
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+([0-9]+)'
     
 env:
   APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN_MYAPP_ANDROID_TEST  }}  
-  APP_NAME: ${{ 'kardas_dev/ENV_TEST'  }}  
+  APP_NAME: ${{ 'kardas_apps/ENV_TEST'  }}  
   TESTING_GROUP: ${{  'ENV_TEST'  }} 
   UPLOAD_FILE: ${{ 'android/app/build/outputs/apk/app-release.apk'  }}  
   
@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+
+      - name: npm init
+        run: npm init
 
       - name: Install dependencies
         run: npm install
