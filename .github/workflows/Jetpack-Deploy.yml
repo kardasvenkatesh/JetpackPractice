@@ -21,9 +21,9 @@ jobs:
     - name: upload artefact to App Center
       uses: wzieba/AppCenter-Github-Action@v1
       with:
-        appName: wzieba/Sample-App
-        token: ${{secrets.APP_CENTER_TOKEN}}
-        group: Testers
-        file: app/build/outputs/apk/release/app-release.apk
-        notifyTesters: true
-        debug: false
+          appName: ${{ env.APP_NAME }}
+          token: ${{ env.APP_CENTER_TOKEN }}
+          group: ${{ env.TESTING_GROUP }}
+          UPLOAD_FILE: $android/app/build/outputs/apk/app-release.apk
+          notifyTesters: true
+          debug: false
