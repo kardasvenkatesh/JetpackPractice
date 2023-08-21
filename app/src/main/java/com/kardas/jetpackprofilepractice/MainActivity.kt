@@ -36,10 +36,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        AppCenter.start(
-//            application, "25d803e0-0a60-4753-b71f-7356663d4f53",
-//            Analytics::class.java, Crashes::class.java.
-//        )
+        AppCenter.start(
+            application, "a14af8202a927fa6281a0381108a571d08fd81fe",
+            Analytics::class.java, Crashes::class.java
+        )
 
         setContent {
             JetpackExampleTheme() {
