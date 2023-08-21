@@ -46,7 +46,7 @@ jobs:
         run: cd android
 
       - name: Build APK
-        run: npm run build:android
+        run: ./gradlew assembleRelease
 
       - name: Upload to App Center
         uses: wzieba/AppCenter-Github-Action@v1
