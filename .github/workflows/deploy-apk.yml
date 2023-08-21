@@ -43,7 +43,7 @@ jobs:
         run: ls -l
 
       - name: Change directory to android
-        run: cd android
+        run: cd app
 
       - name: Build APK
         run: ./gradlew assembleRelease
