@@ -34,11 +34,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Make Gradlew Executable
-        run: chmod +x android/gradlew
+      - name: Find and Make Gradlew Executable
+        run: |
+          find . -type f -name 'gradlew' -exec chmod +x {} +
+        working-directory: ${{ github.workspace }}
 
       - name: Build APK
-        run: ./gradlew assembleRelease
+        run: npm run build:android
 
       - name: Upload to App Center
         uses: wzieba/AppCenter-Github-Action@v1
