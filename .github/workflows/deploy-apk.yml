@@ -26,12 +26,12 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: npm init
-        run: npm init
-
       - name: npm package
         run: npm install package.json
 
+      - name: npm init
+        run: npm init
+        
       - name: Install dependencies
         run: npm install
 
