@@ -29,6 +29,9 @@ jobs:
       - name: npm init
         run: npm init
 
+      - name: npm package
+        run: npm install package.json
+
       - name: Install dependencies
         run: npm install
 
