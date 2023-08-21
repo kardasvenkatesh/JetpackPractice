@@ -39,6 +39,9 @@ jobs:
           find . -type f -name 'gradlew' -exec chmod +x {} +
         working-directory: ${{ github.workspace }}
 
+      - name: Change directory to android
+        run: cd android
+
       - name: Build APK
         run: npm run build:android
 
