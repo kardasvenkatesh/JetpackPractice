@@ -34,9 +34,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Change directory to android
-        run: cd android
-
       - name: Build APK
         run: ./gradlew assembleRelease
 
