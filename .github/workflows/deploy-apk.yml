@@ -5,13 +5,12 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+([0-9]+)'
-    
+
 env:
-  APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN_MYAPP_ANDROID_TEST  }}  
-  APP_NAME: ${{ 'kardas_apps/ENV_TEST'  }}  
-  TESTING_GROUP: ${{  'ENV_TEST'  }} 
-  UPLOAD_FILE: ${{ 'android/app/build/outputs/apk/app-release.apk'  }}  
-  
+  APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN_MYAPP_ANDROID_TEST }}
+  APP_NAME: 'kardas_apps/ENV_TEST'
+  TESTING_GROUP: 'ENV_TEST'
+  UPLOAD_FILE: 'android/app/build/outputs/apk/release/app-release.apk' # Updated APK path
 
 jobs:
   build:
@@ -27,14 +26,27 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: npm init
-        run: npm init
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Use a suitable Node.js version
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build android
-        run: npm run cd android && ./gradlew assembleRelease
+      - name: Find and Make Gradlew Executable
+        run: |
+          find . -type f -name 'gradlew' -exec chmod +x {} +
+        working-directory: ${{ github.workspace }}
+
+      - name: Debug Working Directory
+        run: ls -l
+
+      - name: Change directory to android
+        run: cd app
+
+      - name: Build APK
+        run: ./gradlew assembleRelease
 
       - name: Upload to App Center
         uses: wzieba/AppCenter-Github-Action@v1
