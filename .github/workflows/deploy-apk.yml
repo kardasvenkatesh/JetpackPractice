@@ -10,7 +10,7 @@ env:
   APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN_MYAPP_ANDROID_TEST }}
   APP_NAME: 'kardas_apps/ENV_TEST'
   TESTING_GROUP: 'ENV_TEST'
-  UPLOAD_FILE: 'android/app/build/outputs/apk/release/app-release.apk' # Updated APK path
+  UPLOAD_FILE: 'app/release/app-release.aab' # Updated APK path
 
 jobs:
   build:
