@@ -14,6 +14,8 @@ fun ScreenMain() {
 
     NavHost(navController = navController, startDestination = Routes.Login.route) {
 
+        Log.d("testing", "testing")
+
         composable(Routes.Login.route) {
             LoginPage(navController = navController)
         }
@@ -37,17 +39,23 @@ fun ScreenMain() {
         }
 
         composable(Routes.CheckoutPage.route) {
-            CheckoutScreen(navController = navController, navigateBack = { navController.popBackStack() })
+            CheckoutScreen(
+                navController = navController,
+                navigateBack = { navController.popBackStack() })
 
         }
 
         composable(Routes.SuccessPage.route) {
-            SuccessScreen(navController = navController, navigateBack = { navController.popBackStack() })
+            SuccessScreen(
+                navController = navController,
+                navigateBack = { navController.popBackStack() })
 
         }
 
         composable(Routes.OtpPage.route) {
-            OtpScreen(navController = navController, navigateBack = { navController.popBackStack() })
+            OtpScreen(
+                navController = navController,
+                navigateBack = { navController.popBackStack() })
 
         }
 
