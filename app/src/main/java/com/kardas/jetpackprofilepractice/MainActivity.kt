@@ -66,6 +66,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//sample comment
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
