@@ -36,8 +36,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+//        AppCenter.start(
+//            application, "a14af8202a927fa6281a0381108a571d08fd81fe",
+//            Analytics::class.java, Crashes::class.java
+//        )
+
         AppCenter.start(
-            application, "a14af8202a927fa6281a0381108a571d08fd81fe",
+            application, "d8671511-882b-4446-b3e7-915232a98f57",
             Analytics::class.java, Crashes::class.java
         )
 
