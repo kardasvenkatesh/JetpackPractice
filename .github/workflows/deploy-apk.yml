@@ -7,7 +7,7 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+([0-9]+)'
 
 env:
-  APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN_MYAPP_ANDROID_TEST }}
+  APP_CENTER_TOKEN: ${{ secrets.JETPACK_PROFILE_PRACTICE }}
   APP_NAME: 'kardas_apps/ENV_TEST'
   TESTING_GROUP: 'TESTING_GROUP'
   UPLOAD_FILE: 'app/release/app-release.aab' # Updated APK path
