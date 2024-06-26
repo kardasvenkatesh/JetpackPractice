@@ -8,7 +8,8 @@ on:
 
 env:
   APP_CENTER_TOKEN: ${{ secrets.JETPACK_PROFILE_PRACTICE }}
-  APP_NAME: 'kardas_apps/ENV_TEST'
+#  APP_NAME: 'kardas_apps/ENV_TEST'
+  APP_NAME: 'KardasApps/JetpackProfilePractice'
   TESTING_GROUP: 'TESTING_GROUP'
   UPLOAD_FILE: 'app/release/app-release.aab' # Updated APK path
 
