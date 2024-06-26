@@ -274,7 +274,7 @@ fun CategoriesCard(categoriesItem: CategoriesItem) {
 ////
 //            }
     }
-
+// samplec omment
 //    Card(
 //
 //        shape = RoundedCornerShape(20.dp), elevation = CardDefaults.cardElevation(
